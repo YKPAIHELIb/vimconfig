@@ -40,7 +40,7 @@ set scrolloff=5
 map <MiddleMouse> <Nop>
 imap <MiddleMouse> <Nop>
  
-set clipboard=unnamed
+"set clipboard=unnamed
 set relativenumber
 set number
 
@@ -52,10 +52,10 @@ nnoremap <Esc> :noh<CR>
 
 nnoremap <leader>vs :edit C:\Users\mykola.v.melnychuk\vsvimrc<CR>
 nnoremap <leader>o :vsc File.OpenFile<CR>
-nnoremap <leader>/ "zyiw/<C-R>z<CR>
-vnoremap <leader>/ "zy/<C-R>z<CR>
-nnoremap <leader>? "zyiw:%s/<C-R>z//gc<LEFT><LEFT><LEFT>
-vnoremap <leader>? "zy:%s/<C-R>z//gc<LEFT><LEFT><LEFT>
+nnoremap <leader>/ :let @x=@"<CR>"zyiw:let @"=@x<CR>/<C-R>z<CR>
+vnoremap <leader>/ <ESC>:let @x=@"<CR>gv"zy:let @"=@x<CR>/<C-R>z<CR>
+nnoremap <leader>? :let @x=@"<CR>"zyiw:let @"=@x<CR>:.,$s/<C-R>z//gc<LEFT><LEFT><LEFT>
+vnoremap <leader>? <ESC>:let @x=@"<CR>gv"zy:let @"=@x<CR>:.,$s/<C-R>z//gc<LEFT><LEFT><LEFT>
 
 noremap <leader>sa :vsc Edit.GoToAll<CR>
 noremap <leader>sf :vsc Edit.GoToFile<CR>
@@ -74,6 +74,8 @@ vnoremap <A-k> :vsc Edit.MoveSelectedLinesUp<CR>
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 
+nnoremap <C-q> <C-v>
+
 " Start/stop debugging and running
 " --------------------------------
 " t=test, d=debug test
@@ -81,11 +83,13 @@ nnoremap <C-u> <C-u>zz
 " nmap <Leader>tt :vsc EditorContextMenus.CodeWindow.TestDriven.NET.RerunTests<CR>
 nmap <Leader>c :vsc Debug.StopDebugging<CR> :! taskkill /FI "IMAGENAME eq ProcessInvocation86.exe" /F <CR>
 nmap <Leader>t :vsc TestExplorer.ShowTestExplorer<CR> :vsc TestExplorer.RunAllTestsInContext<CR>
+nmap <Leader>tv :vsc TestExplorer.ShowTestExplorer<CR> :vsc TestExplorer.RunAllTestsInView<CR>
+nmap <Leader>ta :vsc TestExplorer.ShowTestExplorer<CR> :vsc TestExplorer.RunAllTests<CR>
 nmap <Leader>d :vsc TestExplorer.ShowTestExplorer<CR> :vsc TestExplorer.DebugAllTestsInContext<CR>
 nmap <Leader>dl :vsc TestExplorer.ShowTestExplorer<CR> :vsc TestExplorer.DebugLastRun<CR>
 nmap <Leader>f :vsc TestExplorer.ShowTestExplorer<CR> :vsc TestExplorer.RunFailedTests<CR>
 "nmap <Leader>B :vsc EditorContextMenus.CodeWindow.TestDriven.NET.Build<CR>
-nmap <Leader>B :vsc Build.BuildSelection<CR>
+nmap <Leader>B :vsc Build.RebuildSelection<CR>
 nmap <C-B> :vsc Build.BuildSelection<CR>
 
 " While debugging
@@ -115,7 +119,7 @@ map <Leader>wl :vsc Debug.Locals<CR>
 map <Leader>wo :vsc View.Output<CR>
 map <Leader>wb :vsc Team.Git.Annotate<CR>
 map <Leader>wr :vsc View.FindSymbolResults<CR>
-map <Leader>ws :vsc View.SolutionExplorer<CR> :vsc SolutionExplorer.SyncWithActiveDocument<CR>
+map <Leader>ws :vsc View.SolutionExplorer<CR>
 map <Leader>wt :vsc TestExplorer.ShowTestExplorer<CR>
 map <Leader>wv :vsc VsVim.Options<CR>
 map <Leader>ww :vsc Window.Windows<CR>
@@ -205,7 +209,10 @@ map <Leader>ot :vsc Window.KeepTabOpen<CR>
 "Show definiton
 " map <Leader>p :vsc Edit.PeekDefinition<CR>
 " Show parameter and quick info
-map <Leader>p :vsc Edit.ParameterInfo<CR>
+nnoremap <Leader>p "+p
+nnoremap <Leader>P "+P
+vnoremap <Leader>p "+p
+vnoremap <Leader>P "+P
 map <Leader>i :vsc Edit.QuickInfo<CR>
 " Yank parameter info
 " map <Leader>yp :vsc Edit.CopyParameterTip<CR>
@@ -221,6 +228,7 @@ nnoremap <S-space> i<space><Esc>
 " delete char without yank
 noremap x "_x
 noremap X "_X
+vnoremap p "_dP
 
 " H/L is more natural than 0/$
 map H ^
@@ -313,4 +321,4 @@ nnoremap <leader>BS :vsc Build.BuildSolution<CR>
 " Fold like z1, but also return cursor to last position
 " nnoremap z8 mzzMgg/# region<cr>nnnnnnnnnn`z/ÿÿÿ<cr>zz
 " Fold like ^m^o^m^m, but return cursor to last position
-" nnoremap z9 mzzM`zzz
+ nnoremap z9 mzzM`zzz
