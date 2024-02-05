@@ -1,3 +1,6 @@
+nnoremap <leader>vs :edit C:\Users\mykola.v.melnychuk\vsvimrc<CR>
+
+
 " VsVim looks in the following folders: HOME, VIM and USERPROFILE
 
 " TODO: close all non-pinned tabs/documents
@@ -120,6 +123,7 @@ map <Leader>wo :vsc View.Output<CR>
 map <Leader>wb :vsc Team.Git.Annotate<CR>
 map <Leader>wr :vsc View.FindSymbolResults<CR>
 map <Leader>ws :vsc View.SolutionExplorer<CR>
+map <Leader>we :vsc View.ErrorList<CR>
 map <Leader>wt :vsc TestExplorer.ShowTestExplorer<CR>
 map <Leader>wv :vsc VsVim.Options<CR>
 map <Leader>ww :vsc Window.Windows<CR>
@@ -181,6 +185,7 @@ map gp :vsc Edit.GoToBase<CR>
 
 map <Leader><Leader> :vsc Diff.NextDifference<CR>
 map <Leader>. :vsc Diff.PreviousDifference<CR>
+map <C-l> :vsc Diff.SwitchBetweenLeftAndRight<CR>
 
 map gm :vsc Edit.NextBookmarkInDocument<CR>
 "map <Leader>gm :vsc Edit.NextBookmark<CR>
@@ -237,8 +242,8 @@ map L g_
 "copy line without CR
 noremap Y ^y$
 
-noremap + :vsc Edit.CommentSelection <return>
-noremap - :vsc Edit.UncommentSelection <return>
+noremap + :vsc Edit.CommentSelection<CR>
+noremap - :vsc Edit.UncommentSelection<CR>
 
 " Delete trailing spaces
 nnoremap <Leader>dw :%s/\s\+$//<CR>:nohl<CR>
