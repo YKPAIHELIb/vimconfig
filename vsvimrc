@@ -235,6 +235,9 @@ noremap x "_x
 noremap X "_X
 vnoremap p "_dP
 
+" Delete line and start inserting without yank
+nnoremap S "_S
+
 " H/L is more natural than 0/$
 map H ^
 map L g_
