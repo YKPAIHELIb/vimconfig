@@ -1,0 +1,143 @@
+nnoremap <leader>vs :edit C:\Users\mykola.v.melnychuk\.ideavimrc<CR>
+
+let mapleader=" "
+
+" General settings
+" ----------------
+set incsearch
+set hlsearch
+set ignorecase
+set cursorline
+set backspace=indent,eol,start
+set whichwrap=b,s,<,>,h,l   " wrap backspace and cursors correctly
+set scrolloff=5
+ 
+"set clipboard=unnamed
+set relativenumber
+set number
+
+nnoremap <Esc> :noh<CR>
+
+nnoremap <leader>o :vsc File.OpenFile<CR>
+
+" My own advanced search & replace
+nnoremap <leader>/ :let @x=@"<CR>"zyiw:let @"=@x<CR>/<C-R>z<CR>
+vnoremap <leader>/ <ESC>:let @x=@"<CR>gv"zy:let @"=@x<CR>/<C-R>z<CR>
+nnoremap <leader>? :let @x=@"<CR>"zyiw:let @"=@x<CR>:.,$s/<C-R>z//gc<LEFT><LEFT><LEFT>
+vnoremap <leader>? <ESC>:let @x=@"<CR>gv"zy:let @"=@x<CR>:.,$s/<C-R>z//gc<LEFT><LEFT><LEFT>
+
+noremap <leader>sa :vsc Edit.GoToAll<CR>
+noremap <leader>sf :vsc Edit.GoToFile<CR>
+noremap <leader>st :vsc Edit.GoToType<CR>
+noremap <leader>sm :vsc Edit.GoToMember<CR>
+
+noremap <leader>r :vsc Refactor.Rename<CR>
+vnoremap <leader>r :vsc Refactor.Rename<CR>
+
+nnoremap <A-j> :m.+1<CR>V==<Esc>^
+nnoremap <A-k> :m.-2<CR>V==<Esc>^
+inoremap <A-j> <Esc>:m.+1<CR>V==<Esc>^
+inoremap <A-k> <Esc>:m.-2<CR>V==<Esc>^
+vnoremap <A-j> :vsc Edit.MoveSelectedLinesDown<CR>
+vnoremap <A-k> :vsc Edit.MoveSelectedLinesUp<CR>
+
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+
+nnoremap <C-q> <C-v>
+
+" keep search results in the center of the screen
+nnoremap n nzz
+nnoremap N Nzz
+
+" Tests running
+nmap <Leader>t :vsc TestExplorer.ShowTestExplorer<CR> :vsc TestExplorer.RunAllTestsInContext<CR>
+nmap <Leader>tv :vsc TestExplorer.ShowTestExplorer<CR> :vsc TestExplorer.RunAllTestsInView<CR>
+nmap <Leader>ta :vsc TestExplorer.ShowTestExplorer<CR> :vsc TestExplorer.RunAllTests<CR>
+nmap <Leader>d :vsc TestExplorer.ShowTestExplorer<CR> :vsc TestExplorer.DebugAllTestsInContext<CR>
+nmap <Leader>dl :vsc TestExplorer.ShowTestExplorer<CR> :vsc TestExplorer.DebugLastRun<CR>
+
+" Build
+nmap <Leader>B :vsc Build.RebuildSelection<CR>
+nmap <C-B> :vsc Build.BuildSelection<CR>
+nnoremap <leader>BS :vsc Build.BuildSolution<CR>
+
+" Show windows
+" ------------
+map <Leader>wm :vsc View.BookmarkWindow<CR>
+map <Leader>wc :vsc Debug.CallStack<CR>
+map <Leader>wd :vsc Team.Git.CompareWithUnmodified<CR>
+map <Leader>wf :vsc View.FullScreen<CR>
+map <Leader>WF :vsc View.FullScreen<CR>
+map <Leader>wg :vsc Team.Git.GoToGitChanges<CR>
+map <Leader>wp :vsc Team.Git.CompareWithPrevious<CR>
+map <Leader>wh :vsc Team.Git.ViewHistory<CR>
+map <Leader>wo :vsc View.Output<CR>
+map <Leader>wb :vsc Team.Git.Annotate<CR>
+map <Leader>wr :vsc View.FindSymbolResults<CR>
+map <Leader>ws :vsc View.SolutionExplorer<CR>
+map <Leader>we :vsc View.ErrorList<CR>
+map <Leader>wt :vsc TestExplorer.ShowTestExplorer<CR>
+map <Leader>wv :vsc VsVim.Options<CR>
+map <Leader>ww :vsc Window.Windows<CR>
+
+" Navigation
+" ----------
+vmap gb :vsc View.NavigateBackward<CR>
+vmap gf :vsc View.NavigateForward<CR>
+
+map gk :vsc Edit.PreviousMethod<CR>zt
+map gj :vsc Edit.NextMethod<CR>zt
+map gh :vsc Edit.PreviousHighlightedReference<CR>
+map gl :vsc Edit.NextHighlightedReference<CR>
+
+" gd goes to definition by default
+map gr :vsc Edit.FindAllReferences<CR>
+map gi :vsc Edit.GoToImplementation<CR>
+
+map <C-l> :vsc Diff.SwitchBetweenLeftAndRight<CR>
+
+map ge :vsc Edit.NextErrorInView<CR>
+map gE :vsc Edit.PreviousErrorInView<CR>
+
+map <Leader>b :vsc Debug.ToggleBreakpoint<CR>
+
+" Paste from system clipboard
+nnoremap <Leader>p "+p
+nnoremap <Leader>P "+P
+vnoremap <Leader>p "+p
+vnoremap <Leader>P "+P
+
+" info (like when hovering with mouse)
+map <Leader>i :vsc Edit.QuickInfo<CR>
+
+" Making edits
+" ------------
+" add empty lines with no insert mode
+nmap <S-enter> O<Esc>
+nmap <enter> o<Esc>
+
+" delete char without yank
+noremap x "_x
+noremap X "_X
+vnoremap p "_dP
+
+" Delete line and start inserting without yank
+nnoremap S "_S
+
+" H/L is more natural than 0/$
+map H ^
+map L g_
+
+"copy line without CR
+noremap Y ^y$
+
+noremap + :vsc Edit.CommentSelection<CR>
+noremap - :vsc Edit.UncommentSelection<CR>
+
+nnoremap == :vsc Edit.FormatDocument <CR>
+vnoremap == :vsc Edit.FormatSelection <CR>
+
+" reselect visual block after indent
+vnoremap < <gv
+vnoremap > >gv
