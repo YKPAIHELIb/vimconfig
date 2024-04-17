@@ -233,7 +233,7 @@ nnoremap <S-space> i<space><Esc>
 " delete char without yank
 noremap x "_x
 noremap X "_X
-vnoremap p "_dP
+xnoremap <silent> p p:let @"=@0<CR>
 
 " Delete line and start inserting without yank
 nnoremap S "_S
