@@ -219,8 +219,6 @@ nnoremap <Leader>P "+P
 vnoremap <Leader>p "+p
 vnoremap <Leader>P "+P
 map <Leader>i :vsc Edit.QuickInfo<CR>
-" Yank parameter info
-" map <Leader>yp :vsc Edit.CopyParameterTip<CR>
 
 " Making edits
 " ------------
@@ -233,7 +231,9 @@ nnoremap <S-space> i<space><Esc>
 " delete char without yank
 noremap x "_x
 noremap X "_X
-xnoremap <silent> p p:let @"=@0<CR>
+
+" paste correctly at the end of line
+vnoremap p p:let @"=@0<CR>
 
 " Delete line and start inserting without yank
 nnoremap S "_S
@@ -244,6 +244,9 @@ map L g_
 
 "copy line without CR
 noremap Y ^y$
+
+" Duplicate selection and put cursor on start of pasted lines
+vnoremap <Leader>y :t.<CR>
 
 noremap + :vsc Edit.CommentSelection<CR>
 noremap - :vsc Edit.UncommentSelection<CR>
