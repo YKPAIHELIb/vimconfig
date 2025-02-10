@@ -50,10 +50,7 @@ set number
 let mapleader=" "
 
 nnoremap <Esc> :noh<CR>
-" nnoremap <leader>rs :source C:\Users\Julien\.babun\cygwin\home\Julien\.vsvimrc<CR>
-" nnoremap <leader>rs :source C:\Users\mykola.v.melnychuk\vsvimrc<CR>
 
-nnoremap <leader>vs :edit C:\Users\mykola.v.melnychuk\vsvimrc<CR>
 nnoremap <leader>o :vsc File.OpenFile<CR>
 nnoremap <leader>/ :let @x=@"<CR>"zyiw:let @"=@x<CR>/<C-R>z<CR>
 vnoremap <leader>/ <ESC>:let @x=@"<CR>gv"zy:let @"=@x<CR>/<C-R>z<CR>
@@ -247,6 +244,7 @@ noremap Y ^y$
 
 " Duplicate selection and put cursor on start of pasted lines
 vnoremap <Leader>y :t.<CR>
+nnoremap <Leader>y :t.<CR>
 
 noremap + :vsc Edit.CommentSelection<CR>
 noremap - :vsc Edit.UncommentSelection<CR>
